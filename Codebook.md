@@ -32,7 +32,7 @@ The script operates in x steps:
   columnNames <- featuresDT[like(V2,"mean()") | like(V2,"std()")]$V2
 ```  
 ## Tidy up the test data set
-  
+```R   
   subjectTest <- read.table("./UCI HAR Dataset/test/subject_test.txt")
   names(subjectTest) <- c("subject")
   
@@ -47,9 +47,9 @@ The script operates in x steps:
   names(testSetLabelsWithDesc) <- c("activityNumber","activityName")
   testSetWithDesc <- cbind(subjectTest,testSetLabelsWithDesc,testSetLimitedColumns)
   #testSetWithDesc$source <- "test"
-  
+```    
 ## Tidy up the train data set
-  
+```R    
   subjectTrain <- read.table("./UCI HAR Dataset/train/subject_train.txt")
   names(subjectTrain) <- c("subject")
 
@@ -69,3 +69,4 @@ The script operates in x steps:
   aggregatedResults <- aggregate(. ~subject+activityNumber+activityName, data=combinedSet, mean, na.rm=TRUE)
   
   write.table(aggregatedResults,"aggregate_combined_dataset.txt")
+``` 

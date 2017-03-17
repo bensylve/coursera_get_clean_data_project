@@ -22,7 +22,7 @@ The script operates in x steps:
     unzip(zipfile)
   }
 ``` 
-## Get the column names and meta-data to label the rows and columns
+## Get the column names and meta-data to label the rows and columns. Only get columns for mean and standard deviation.
 ```R 
   activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt")
   features <- read.table("./UCI HAR Dataset/features.txt")
@@ -68,7 +68,7 @@ The script operates in x steps:
   
   write.table(combinedSet,"disaggregate_combined_dataset.txt")
 ``` 
-## Aggregate the data and export the aggregated data to a [text file](https://raw.githubusercontent.com/bensylve/coursera_get_clean_data_project/master/aggregate_combined_dataset.txt)
+## Aggregate the data based on subject and activity type and export the aggregated data to a [text file](https://raw.githubusercontent.com/bensylve/coursera_get_clean_data_project/master/aggregate_combined_dataset.txt)
 ```R 
   aggregatedResults <- aggregate(. ~subject+activityNumber+activityName, data=combinedSet, mean, na.rm=TRUE)
   

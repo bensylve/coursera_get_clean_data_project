@@ -1,5 +1,14 @@
 run_analysis <- function()
 {
+  if (!file.exists("UCI HAR Dataset")) {
+    # download the data
+    fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+    zipfile="UCI HAR Dataset.zip"
+    message("Downloading data")
+    download.file(fileURL, destfile=zipfile)
+    unzip(zipfile)
+  }
+  
   activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt")
   features <- read.table("./UCI HAR Dataset/features.txt")
   
@@ -36,9 +45,9 @@ run_analysis <- function()
   
   combinedSet <- rbind(testSetWithDesc,trainingSetWithDesc)
   
-  write.table(combinedSet,"disaggregate_combined_dataset.txt")
+  write.table(combinedSet,"disaggregate_combined_dataset.txt", row.names = FALSE)
   
   aggregatedResults <- aggregate(. ~subject+activityNumber+activityName, data=combinedSet, mean, na.rm=TRUE)
   
-  write.table(aggregatedResults,"aggregate_combined_dataset.txt")
+  write.table(aggregatedResults,"aggregate_combined_dataset.txt", row.names = FALSE)
 }

@@ -12,7 +12,7 @@ The script operates in x steps:
 * Aggregate the data and export the aggregated data to a text file
 
 ## Download the data set
-
+'''R
   if (!file.exists("UCI HAR Dataset")) {
     # download the data
     fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"

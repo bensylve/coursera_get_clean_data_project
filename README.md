@@ -6,4 +6,4 @@ It also creates a second, independent tidy data set with the average of each var
 
 The files are exported as text files.
 
-An explanation of the functionality can be found at Code.md.
+An explanation of the functionality can be found at [Code.md](https://github.com/bensylve/coursera_get_clean_data_project/blob/master/Codebook.md).

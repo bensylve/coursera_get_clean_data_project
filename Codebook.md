@@ -1,4 +1,4 @@
-#Summary
+# Summary
 
 run_analysis.R is the file that contains this script. For simplicity's sake I kept the script to one function.
 
@@ -11,6 +11,8 @@ The script operates in x steps:
 * Combine the test and train data sets and export the data to a text file
 * Aggregate the data and export the aggregated data to a text file
 
+## Download the data set
+
   if (!file.exists("UCI HAR Dataset")) {
     # download the data
     fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
@@ -19,13 +21,17 @@ The script operates in x steps:
     download.file(fileURL, destfile=zipfile)
     unzip(zipfile)
   }
-  
+ 
+## Get the column names and meta-data to label the rows and columns
+ 
   activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt")
   features <- read.table("./UCI HAR Dataset/features.txt")
   
   featuresDT <- setDT(features)
   columns <- featuresDT[like(V2,"mean()") | like(V2,"std()")]$V1
   columnNames <- featuresDT[like(V2,"mean()") | like(V2,"std()")]$V2
+  
+## Tidy up the test data set
   
   subjectTest <- read.table("./UCI HAR Dataset/test/subject_test.txt")
   names(subjectTest) <- c("subject")
@@ -41,6 +47,8 @@ The script operates in x steps:
   names(testSetLabelsWithDesc) <- c("activityNumber","activityName")
   testSetWithDesc <- cbind(subjectTest,testSetLabelsWithDesc,testSetLimitedColumns)
   #testSetWithDesc$source <- "test"
+  
+## Tidy up the train data set
   
   subjectTrain <- read.table("./UCI HAR Dataset/train/subject_train.txt")
   names(subjectTrain) <- c("subject")

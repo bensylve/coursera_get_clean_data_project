@@ -1,6 +1,6 @@
 # Summary
 
-run_analysis.R is the file that contains this script. For simplicity's sake I kept the script to one function.
+[run_analysis.R](https://github.com/bensylve/coursera_get_clean_data_project/blob/master/run_analysis.R) is the file that contains this script. For simplicity's sake I kept the script to one function.
 
 The script operates in x steps:
 
@@ -61,11 +61,15 @@ The script operates in x steps:
   names(trainingSetLabelsWithDesc) <- c("activityNumber","activityName")
   trainingSetWithDesc <- cbind(subjectTrain,trainingSetLabelsWithDesc,trainingSetLimitedColumns)
   #trainingSetWithDesc$source <- "train"
-  
+``` 
+##Combine the test and train data sets and export the data to a text file
+```R 
   combinedSet <- rbind(testSetWithDesc,trainingSetWithDesc)
   
   write.table(combinedSet,"disaggregate_combined_dataset.txt")
-  
+``` 
+##Aggregate the data and export the aggregated data to a text file
+```R 
   aggregatedResults <- aggregate(. ~subject+activityNumber+activityName, data=combinedSet, mean, na.rm=TRUE)
   
   write.table(aggregatedResults,"aggregate_combined_dataset.txt")

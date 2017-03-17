@@ -62,13 +62,13 @@ The script operates in x steps:
   trainingSetWithDesc <- cbind(subjectTrain,trainingSetLabelsWithDesc,trainingSetLimitedColumns)
   #trainingSetWithDesc$source <- "train"
 ``` 
-##Combine the test and train data sets and export the data to a text file
+##Combine the test and train data sets and export the data to a [text file](https://raw.githubusercontent.com/bensylve/coursera_get_clean_data_project/master/disaggregate_combined_dataset.txt)
 ```R 
   combinedSet <- rbind(testSetWithDesc,trainingSetWithDesc)
   
   write.table(combinedSet,"disaggregate_combined_dataset.txt")
 ``` 
-##Aggregate the data and export the aggregated data to a text file
+##Aggregate the data and export the aggregated data to a [text file](https://raw.githubusercontent.com/bensylve/coursera_get_clean_data_project/master/aggregate_combined_dataset.txt)
 ```R 
   aggregatedResults <- aggregate(. ~subject+activityNumber+activityName, data=combinedSet, mean, na.rm=TRUE)
   
